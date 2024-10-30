@@ -41,4 +41,5 @@ int main() {
     searchBinary(movies3, 2021);
 
     return 0;
+    
 }

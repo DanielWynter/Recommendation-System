@@ -10,14 +10,8 @@
 #include "BinarySearch.hpp"
 #include "SearchMethods.hpp"
 #include "QuickSort.hpp"
-int main() {
 
-    std::cout << "Data base saved in a DynamicArray\n " << std::endl;
-    movies1.printdB();
-    std::cout << "Data base saved in a LinkedList\n " << std::endl;
-    movies2.printDb();
-    std::cout << "Data base saved in a DoublyLinkedList\n " << std::endl;
-    movies3.printDb();
+int main() {
 
     //Sequential search
     std::cout << "\nSearching " << 2010 << " movies with sequential search in a DynamicArray:\n" << std::endl;

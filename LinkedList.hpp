@@ -190,9 +190,9 @@ public:
         Node<T>* current = head_;
         while (current != nullptr) {
             std::cout << "ID: " << current->data.getId() 
-                << ", Título: " << current->data.getTitle() 
-                << ", Año: " << current->data.getYear() 
-                << ", Clasificación de Edad: " << current->data.getAge() << std::endl;
+                << ", Title: " << current->data.getTitle() 
+                << ", Year: " << current->data.getYear() 
+                << ", Age: " << current->data.getAge() << std::endl;
             current = current->next;
         }
     }

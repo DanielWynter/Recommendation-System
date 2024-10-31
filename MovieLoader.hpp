@@ -57,7 +57,7 @@ DynamicArray<Movie> loadMovies1(const std::string &filename) {
         }
         file.close();
     } else {
-        std::cout << "No se pudo abrir el archivo." << std::endl;
+        std::cout << "Couldn't load file." << std::endl;
     }
     return movies1;
 }
@@ -102,7 +102,7 @@ LinkedList<Movie> loadMovies2(const std::string &filename) {
         }
         file.close();
     } else {
-        std::cout << "No se pudo abrir el archivo." << std::endl;
+        std::cout << "Couldn't load file." << std::endl;
     }
     return movies2;
 }
@@ -147,7 +147,7 @@ DoublyLinkedList<Movie> loadMovies3(const std::string &filename) {
         }
         file.close();
     } else {
-        std::cout << "No se pudo abrir el archivo." << std::endl;
+        std::cout << "Couldn't load file." << std::endl;
     }
     return movies3;
 }

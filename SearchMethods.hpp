@@ -17,7 +17,7 @@ void searchSequentially(const Container& container, int year) {
     }
 }
 
-//Búsqueda secuencial para linked list
+//Sequential search for linked list
 
 template <typename T>
 void searchSequentially(const LinkedList<T>& list, int year) {
@@ -69,7 +69,7 @@ void searchBinary(const DynamicArray& array, int year) {
     }
 }
 
-//Búsqueda binaria
+//BinarySearch
 
 template <typename T>
 void searchBinary(const LinkedList<T>& list, int year) {

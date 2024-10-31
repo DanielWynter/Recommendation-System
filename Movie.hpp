@@ -17,9 +17,8 @@ private:
     int type;
 
 public:
-    // Constructores
 
-    Movie() 
+  Movie() 
         : id(0), title(""), year(0), age(""), 
           rottenTomatoes(""), netflix(false), 
           hulu(false), primeVideo(false), 
@@ -32,7 +31,7 @@ public:
           rottenTomatoes(rottenTomatoes), netflix(netflix), hulu(hulu),
           primeVideo(primeVideo), disneyPlus(disneyPlus), type(type) {}
 
-    // Getters
+    //Getters
     int getId() const { return id; }
     std::string getTitle() const { return title; }
     int getYear() const { return year; }

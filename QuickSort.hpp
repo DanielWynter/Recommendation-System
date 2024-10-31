@@ -7,7 +7,7 @@
 #include "DoublyLinkedList.hpp"
 #include "Movie.hpp"
 
-//Quick sort para dynamic array, para ordenarlo por año
+//Quick sort by year dynamic array
 unsigned long long partition(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
     int pivot = movies[high].getYear(); 
     unsigned long long i = low - 1; 
@@ -34,7 +34,7 @@ void quickSort(DynamicArray<Movie>& movies, unsigned long long low, unsigned lon
 void quick_sort_movies_by_year(DynamicArray<Movie>& movies) {
     quickSort(movies, 0, movies.size() - 1);
 }
-//Quick sort para ordenar por año en Linked list
+//Quick sort by year linked list
 Node<Movie>* partition(LinkedList<Movie>& movies, Node<Movie>* low, Node<Movie>* high) {
     int pivot = high->data.getYear();
     Node<Movie>* i = low;
@@ -67,7 +67,7 @@ void quick_sort_movies_by_year(LinkedList<Movie>& movies) {
     quickSort(movies, movies.getHead(), high);
 }
 
-//Quick sort con doubly linked list
+//Quick sort with a doubly linked list
 DoublyNode<Movie>* partition(DoublyLinkedList<Movie>& movies, DoublyNode<Movie>* low, DoublyNode<Movie>* high) {
     int pivot = high->data.getYear();
     DoublyNode<Movie>* i = low;

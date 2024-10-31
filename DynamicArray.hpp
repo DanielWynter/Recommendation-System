@@ -355,14 +355,14 @@ void printdB() const {
     for (unsigned int i = 0; i < size_; ++i) {
         const Movie& movie = data_[i]; // Obtén la película actual
         std::cout << "ID: " << movie.getId() 
-                  << ", Título: " << movie.getTitle() 
-                  << ", Año: " << movie.getYear() 
-                  << ", Clasificación de Edad: " << movie.getAge() 
+                  << ", Title: " << movie.getTitle() 
+                  << ", Year: " << movie.getYear() 
+                  << ", Age: " << movie.getAge() 
                   << ", Rotten Tomatoes: " << movie.getRottenTomatoes() 
-                  << ", Netflix: " << (movie.isNetflix() ? "Sí" : "No")
-                  << ", Hulu: " << (movie.isHulu() ? "Sí" : "No")
-                  << ", Prime Video: " << (movie.isPrimeVideo() ? "Sí" : "No")
-                  << ", Disney Plus: " << (movie.isDisneyPlus() ? "Sí" : "No")
+                  << ", Netflix: " << (movie.isNetflix() ? "Yes" : "No")
+                  << ", Hulu: " << (movie.isHulu() ? "Yes" : "No")
+                  << ", Prime Video: " << (movie.isPrimeVideo() ? "yes" : "No")
+                  << ", Disney Plus: " << (movie.isDisneyPlus() ? "yes" : "No")
                   << ", Tipo: " << movie.getType() << std::endl;
     }
 }

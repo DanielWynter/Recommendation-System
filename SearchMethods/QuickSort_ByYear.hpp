@@ -1,14 +1,14 @@
-#ifndef QUICKSORT_HPP
-#define QUICKSORT_HPP
+#ifndef QUICKSORT_BYYEAR_HPP
+#define QUICKSORT_BYYEAR_HPP
 
 #include <iostream>
-#include "DynamicArray.hpp"
-#include "LinkedList.hpp"
-#include "DoublyLinkedList.hpp"
-#include "Movie.hpp"
+#include "../ATD/DynamicArray.hpp"
+#include "../ATD/LinkedList.hpp"
+#include "../ATD/DoublyLinkedList.hpp"
+#include "../Movie/Movie.hpp"
 
 //Quick sort by year dynamic array
-unsigned long long partition(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
+unsigned long long partitionByYear(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
     int pivot = movies[high].getYear(); 
     unsigned long long i = low - 1; 
 
@@ -22,20 +22,20 @@ unsigned long long partition(DynamicArray<Movie>& movies, unsigned long long low
     return i + 1; 
 }
 
-void quickSort(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
+void quickSortByYear(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
     if (low < high) {
-        unsigned long long pi = partition(movies, low, high);
+        unsigned long long pi = partitionByYear(movies, low, high);
 
-        quickSort(movies, low, pi - 1);
-        quickSort(movies, pi + 1, high);
+        quickSortByYear(movies, low, pi - 1);
+        quickSortByYear(movies, pi + 1, high);
     }
 }
 
 void quick_sort_movies_by_year(DynamicArray<Movie>& movies) {
-    quickSort(movies, 0, movies.size() - 1);
+    quickSortByYear(movies, 0, movies.size() - 1);
 }
 //Quick sort by year linked list
-Node<Movie>* partition(LinkedList<Movie>& movies, Node<Movie>* low, Node<Movie>* high) {
+Node<Movie>* partitionByYear(LinkedList<Movie>& movies, Node<Movie>* low, Node<Movie>* high) {
     int pivot = high->data.getYear();
     Node<Movie>* i = low;
 
@@ -49,11 +49,11 @@ Node<Movie>* partition(LinkedList<Movie>& movies, Node<Movie>* low, Node<Movie>*
     return i;
 }
 
-void quickSort(LinkedList<Movie>& movies, Node<Movie>* low, Node<Movie>* high) {
+void quickSortByYear(LinkedList<Movie>& movies, Node<Movie>* low, Node<Movie>* high) {
     if (low != nullptr && high != nullptr && low != high && low != high->next) {
-        Node<Movie>* pi = partition(movies, low, high);
-        quickSort(movies, low, pi->next);
-        quickSort(movies, pi->next, high);
+        Node<Movie>* pi = partitionByYear(movies, low, high);
+        quickSortByYear(movies, low, pi->next);
+        quickSortByYear(movies, pi->next, high);
     }
 }
 
@@ -64,11 +64,11 @@ void quick_sort_movies_by_year(LinkedList<Movie>& movies) {
     while (high->next != nullptr) {
         high = high->next;
     }
-    quickSort(movies, movies.getHead(), high);
+    quickSortByYear(movies, movies.getHead(), high);
 }
 
 //Quick sort with a doubly linked list
-DoublyNode<Movie>* partition(DoublyLinkedList<Movie>& movies, DoublyNode<Movie>* low, DoublyNode<Movie>* high) {
+DoublyNode<Movie>* partitionByYear(DoublyLinkedList<Movie>& movies, DoublyNode<Movie>* low, DoublyNode<Movie>* high) {
     int pivot = high->data.getYear();
     DoublyNode<Movie>* i = low;
 
@@ -82,11 +82,11 @@ DoublyNode<Movie>* partition(DoublyLinkedList<Movie>& movies, DoublyNode<Movie>*
     return i; 
 }
 
-void quickSort(DoublyLinkedList<Movie>& movies, DoublyNode<Movie>* low, DoublyNode<Movie>* high) {
+void quickSortByYear(DoublyLinkedList<Movie>& movies, DoublyNode<Movie>* low, DoublyNode<Movie>* high) {
     if (high != nullptr && low != high && low != high->next) {
-        DoublyNode<Movie>* pi = partition(movies, low, high);
-        quickSort(movies, low, pi->prev); 
-        quickSort(movies, pi->next, high); 
+        DoublyNode<Movie>* pi = partitionByYear(movies, low, high);
+        quickSortByYear(movies, low, pi->prev); 
+        quickSortByYear(movies, pi->next, high); 
     }
 }
 
@@ -94,7 +94,7 @@ void quick_sort_movies_by_year(DoublyLinkedList<Movie>& movies) {
     if (movies.empty()) return; 
 
     DoublyNode<Movie>* high = movies.getTail();
-    quickSort(movies, movies.getHead(), high); 
+    quickSortByYear(movies, movies.getHead(), high); 
 }
 
 #endif 

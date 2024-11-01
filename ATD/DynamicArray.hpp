@@ -7,7 +7,7 @@
 #define DYNAMIC_ARRAY_HPP
 // Includes
 #include <stdexcept> // For std::out_of_range
-#include "Movie.hpp"
+#include "../Movie/Movie.hpp"
 /**
 * Class that defines a dynamic array.
 *
@@ -351,7 +351,7 @@ void pop_front()
 erase(0);
 }
 
-void printdB() const {
+void printDb() const {
     for (unsigned int i = 0; i < size_; ++i) {
         const Movie& movie = data_[i]; // Obtén la película actual
         std::cout << "ID: " << movie.getId() 

@@ -9,7 +9,7 @@
 #include "MovieLoader.hpp"
 #include "BinarySearch.hpp"
 #include "SearchMethods.hpp"
-#include "QuickSort.hpp"
+#include "QuickSort_ByYear.hpp"
 
 int main() {
 

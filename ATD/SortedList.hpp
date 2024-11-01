@@ -1,7 +1,7 @@
 #ifndef SORTED_LIST_HPP
 #define SORTED_LIST_HPP
 
-#include "Movie.hpp"
+#include "../Movie/Movie.hpp"
 #include <iostream>
 
 class SortedList {
@@ -18,17 +18,36 @@ private:
     ListNode* tail;
 
 public:
+
     SortedList() : head(nullptr), tail(nullptr) {}
 
-    int calculateRelevanceScore(const Movie& movie) {
-        int score = 0;
-        score += movie.getYear();
-        score += (movie.isNetflix() ? 10 : 0);
-        score += (movie.isHulu() ? 10 : 0);
-        score += (movie.isPrimeVideo() ? 10 : 0);
-        score += (movie.isDisneyPlus() ? 10 : 0);
-        return score;
+int calculateRelevanceScore(const Movie& movie) {
+    int score = 0;
+
+    // Obtener y limpiar la calificación de Rotten Tomatoes
+    std::string rottenScore = movie.getRottenTomatoes();
+    rottenScore.erase(remove(rottenScore.begin(), rottenScore.end(), ' '), rottenScore.end());
+
+    size_t pos = rottenScore.find('/');
+    if (pos != std::string::npos) {
+        rottenScore = rottenScore.substr(0, pos); // Obtener solo la parte antes de '/'
     }
+
+    // Verifica si la cadena contiene solo dígitos
+    if (!rottenScore.empty() && std::all_of(rottenScore.begin(), rottenScore.end(), ::isdigit)) {
+        score += std::stoi(rottenScore); // Agregar solo la calificación limpia
+    } else {
+        std::cerr << "Error: Calificación de Rotten Tomatoes inválida para la película: " 
+                  << movie.getTitle() << " (" << rottenScore << ")" << std::endl;
+        return 0; // Retorna 0 si la calificación no es válida
+    }
+
+    // Imprimir el score calculado para depuración
+    std::cout << "Relevance Score para " << movie.getTitle() << ": " << score << std::endl;
+
+    return score; // Retornar el score final
+}
+
 
     void insert(const Movie& movie) {
         int score = calculateRelevanceScore(movie);
@@ -55,8 +74,7 @@ public:
     void printList() const {
         ListNode* current = head;
         while (current) {
-            std::cout << "Title: " << current->data.getTitle()
-                      << ", Relevance Score: " << current->relevanceScore << std::endl;
+            std::cout << "Title: " << current->data.getTitle() << ", Relevance Score: " << current->relevanceScore << "/100" << std::endl;
             current = current->next;
         }
     }

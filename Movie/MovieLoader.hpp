@@ -4,9 +4,9 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "DynamicArray.hpp"
-#include "LinkedList.hpp"
-#include "DoublyLinkedList.hpp"
+#include "../ATD/DynamicArray.hpp"
+#include "../ATD/LinkedList.hpp"
+#include "../ATD/DoublyLinkedList.hpp"
 #include "Movie.hpp"
 
 int stringToInt(const std::string& str) {
@@ -52,8 +52,10 @@ DynamicArray<Movie> loadMovies1(const std::string &filename) {
             std::getline(lineStream, cell, ',');
             type = stringToInt(cell);
 
-            Movie movie(id, title, year, age, rottenTomatoes, netflix, hulu, primeVideo, disneyPlus, type);
-            movies1.push_back(movie);
+            if (year > 1900 && !rottenTomatoes.empty()) {
+                Movie movie(id, title, year, age, rottenTomatoes, netflix, hulu, primeVideo, disneyPlus, type);
+                movies1.push_back(movie);
+            }
         }
         file.close();
     } else {
@@ -97,8 +99,10 @@ LinkedList<Movie> loadMovies2(const std::string &filename) {
             std::getline(lineStream, cell, ',');
             type = stringToInt(cell);
 
-            Movie movie(id, title, year, age, rottenTomatoes, netflix, hulu, primeVideo, disneyPlus, type);
-            movies2.push_back(movie);
+            if (year > 1900 && !rottenTomatoes.empty()) {
+                Movie movie(id, title, year, age, rottenTomatoes, netflix, hulu, primeVideo, disneyPlus, type);
+                movies2.push_back(movie);
+            }
         }
         file.close();
     } else {
@@ -142,8 +146,10 @@ DoublyLinkedList<Movie> loadMovies3(const std::string &filename) {
             std::getline(lineStream, cell, ',');
             type = stringToInt(cell);
 
-            Movie movie(id, title, year, age, rottenTomatoes, netflix, hulu, primeVideo, disneyPlus, type);
-            movies3.push_back(movie);
+            if (year > 1900 && !rottenTomatoes.empty()) {
+                Movie movie(id, title, year, age, rottenTomatoes, netflix, hulu, primeVideo, disneyPlus, type);
+                movies3.push_back(movie);
+            }
         }
         file.close();
     } else {

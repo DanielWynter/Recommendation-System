@@ -1,5 +1,5 @@
-#ifndef SORTED_LIST_HPP
-#define SORTED_LIST_HPP
+#ifndef SORTEDLIST_HPP
+#define SORTEDLIST_HPP
 
 #include "../Movie/Movie.hpp"
 #include <iostream>

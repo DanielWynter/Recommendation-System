@@ -1,5 +1,5 @@
-#ifndef PRIORITY_QUEUE_HPP
-#define PRIORITY_QUEUE_HPP
+#ifndef PRIORITYQUEUE_HPP
+#define PRIORITYQUEUE_HPP
 
 #include "../Movie/Movie.hpp"
 #include <iostream>

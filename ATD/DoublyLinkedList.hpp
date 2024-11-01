@@ -3,8 +3,8 @@
 * Example of implementation of a class that defines doubly linked lists.
 */
 //=================================================================================================================
-#ifndef DOUBLY_LINKED_LIST_HPP
-#define DOUBLY_LINKED_LIST_HPP
+#ifndef DOUBLYLINKEDLIST_HPP
+#define DOUBLYLINKEDLIST_HPP
 // Includes
 #include <stdexcept> // For std::out_of_range
 /**

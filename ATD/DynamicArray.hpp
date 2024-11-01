@@ -3,8 +3,8 @@
 * Example of implementation of a class that defines dynamic arrays.
 */
 //=================================================================================================================
-#ifndef DYNAMIC_ARRAY_HPP
-#define DYNAMIC_ARRAY_HPP
+#ifndef DYNAMICARRAY_HPP
+#define DYNAMICARRAY_HPP
 // Includes
 #include <stdexcept> // For std::out_of_range
 #include "../Movie/Movie.hpp"

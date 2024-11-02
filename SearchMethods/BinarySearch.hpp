@@ -3,13 +3,19 @@
 
 #include "../Movie/Movie.hpp"
 #include "../ATD/DynamicArray.hpp"
-
 template<typename DynamicArray>
+
+//BinarySearch
+
 long long binary_search(int targetYear, const DynamicArray& data,
     unsigned long long low, unsigned long long high) 
 {
-
     if (low > high) {
+        return -1;
+    }
+
+    if (low >= data.size() || high >= data.size()) {
+        std::cerr << "Index out of bounds: low=" << low << ", high=" << high << ", size=" << data.size() << std::endl;
         return -1;
     }
 
@@ -25,8 +31,6 @@ long long binary_search(int targetYear, const DynamicArray& data,
         return binary_search(targetYear, data, low, mid - 1);
     }
 }
-
-//BinarySearch
 
 template <typename T>
 void searchBinary(const LinkedList<T>& list, int year) {

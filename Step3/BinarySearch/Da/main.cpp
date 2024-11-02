@@ -11,13 +11,20 @@
 #include "../../../SearchMethods/SequentialSearch.hpp"
 #include "../../../SearchMethods/QuickSort_ByYear.hpp"
 
-int main(){
-//Sort movies by year with quick sort
-quick_sort_movies_by_year(movies1);
+int main() {
 
-//Binary search
-std::cout << "\nSearching " << 2012 << " movies with binary search in a DynamicArray:\n" << std::endl;
-searchBinary(movies1, 2012);
-return 0;
+    // Ordenar películas por año con quicksort
+    quick_sort_movies_by_year(movies1);
 
+    // Búsqueda binaria
+    std::cout << "\nSearching 2012 movies with binary search in a DynamicArray:\n" << std::endl;
+    long long result = binary_search(2012, movies1, 0, movies1.size() - 1);
+
+    if (result != -1) {
+        std::cout << "Found movie: " << movies1[result].getTitle() << " (" << movies1[result].getYear() << ")" << std::endl;
+    } else {
+        std::cout << "No movies found for the year 2012." << std::endl;
+    }
+
+    return 0;
 }

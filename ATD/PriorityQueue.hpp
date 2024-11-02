@@ -30,15 +30,6 @@ int calculateRelevanceScore(const Movie& movie) {
         rottenScore = rottenScore.substr(0, pos); // Obtener solo la parte antes de '/'
     }
 
-    // Verifica si la cadena contiene solo dígitos
-    if (!rottenScore.empty() && std::all_of(rottenScore.begin(), rottenScore.end(), ::isdigit)) {
-        score += std::stoi(rottenScore); // Agregar solo la calificación limpia
-    } else {
-        std::cerr << "Error: Calificación de Rotten Tomatoes inválida para la película: " 
-                  << movie.getTitle() << " (" << rottenScore << ")" << std::endl;
-        return 0; // Retorna 0 si la calificación no es válida
-    }
-
     // Imprimir el score calculado para depuración
     std::cout << "Relevance Score para " << movie.getTitle() << ": " << score << std::endl;
 

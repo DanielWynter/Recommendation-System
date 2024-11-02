@@ -22,9 +22,9 @@ unsigned long long partitionByYear(DynamicArray<Movie>& movies, unsigned long lo
     return i + 1; 
 }
 
-void quickSortByYear(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
+void quickSortByYear(DynamicArray<Movie>& movies, long long low, long long high) {
     if (low < high) {
-        unsigned long long pi = partitionByYear(movies, low, high);
+        long long pi = partitionByYear(movies, low, high);
 
         quickSortByYear(movies, low, pi - 1);
         quickSortByYear(movies, pi + 1, high);

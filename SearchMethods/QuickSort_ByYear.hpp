@@ -6,6 +6,8 @@
 #include "../ATD/LinkedList.hpp"
 #include "../ATD/DoublyLinkedList.hpp"
 #include "../Movie/Movie.hpp"
+#include "../ATD/PriorityQueue.hpp"
+#include "../ATD/SortedList.hpp"
 
 //Quick sort by year dynamic array
 unsigned long long partitionByYear(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
@@ -97,4 +99,4 @@ void quick_sort_movies_by_year(DoublyLinkedList<Movie>& movies) {
     quickSortByYear(movies, movies.getHead(), high); 
 }
 
-#endif 
+#endif

@@ -66,6 +66,9 @@ int calculateRelevanceScore(const Movie& movie) {
     bool isEmpty() const {
         return head == nullptr;
     }
+
+    PQNode* getHead() { return head; }
+    PQNode* getNextNode(PQNode* node) { return node ? node->next : nullptr; } 
     
 };
 

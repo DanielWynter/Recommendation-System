@@ -18,7 +18,7 @@ int main() {
     std::cout << "\n=== Relevance analysis ===\n";
 
     PriorityQueue priorityQueue;
-
+    
     for (unsigned int i = 0; i < movies1.size(); ++i) {
         priorityQueue.insert(movies1[i]);
     }

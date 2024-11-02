@@ -16,15 +16,7 @@ int main() {
     // Ordenar películas por año con quicksort
     quick_sort_movies_by_year(movies1);
 
-    // Búsqueda binaria
-    std::cout << "\nSearching 2012 movies with binary search in a DynamicArray:\n" << std::endl;
-    long long result = binary_search(2012, movies1, 0, movies1.size() - 1);
-
-    if (result != -1) {
-        std::cout << "Found movie: " << movies1[result].getTitle() << " (" << movies1[result].getYear() << ")" << std::endl;
-    } else {
-        std::cout << "No movies found for the year 2012." << std::endl;
-    }
+    binarySearchAllMovies(2012, movies1, 0, movies1.size() - 1);
 
     return 0;
 }

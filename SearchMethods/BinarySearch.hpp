@@ -3,35 +3,46 @@
 
 #include "../Movie/Movie.hpp"
 #include "../ATD/DynamicArray.hpp"
+
+// Búsqueda binaria modificada para encontrar e imprimir todas las coincidencias de un año
 template<typename DynamicArray>
-
-//BinarySearch
-
-long long binary_search(int targetYear, const DynamicArray& data,
+void binarySearchAllMovies(int targetYear, const DynamicArray& data,
     unsigned long long low, unsigned long long high) 
 {
     if (low > high) {
-        return -1;
-    }
-
-    if (low >= data.size() || high >= data.size()) {
-        std::cerr << "Index out of bounds: low=" << low << ", high=" << high << ", size=" << data.size() << std::endl;
-        return -1;
+        std::cout << "No movies found for year " << targetYear << "." << std::endl;
+        return;
     }
 
     unsigned long long mid = low + (high - low) / 2;
 
     if (data[mid].getYear() == targetYear) {
-        return mid;
-    }
+        // Imprimir la película encontrada
+        std::cout << "Found: " << data[mid].getTitle() << " (" << data[mid].getYear() << ")" << std::endl;
+
+        // Búsqueda hacia la izquierda para encontrar otras coincidencias
+        long long left = mid - 1;
+        while (left >= 0 && data[left].getYear() == targetYear) {
+            std::cout << "Found: " << data[left].getTitle() << " (" << data[left].getYear() << ")" << std::endl;
+            left--;
+        }
+
+        // Búsqueda hacia la derecha para encontrar otras coincidencias
+        long long right = mid + 1;
+        while (right < data.size() && data[right].getYear() == targetYear) {
+            std::cout << "Found: " << data[right].getTitle() << " (" << data[right].getYear() << ")" << std::endl;
+            right++;
+        }
+    } 
     else if (data[mid].getYear() < targetYear) {
-        return binary_search(targetYear, data, mid + 1, high);
-    }
+        binarySearchAllMovies(targetYear, data, mid + 1, high);
+    } 
     else {
-        return binary_search(targetYear, data, low, mid - 1);
+        binarySearchAllMovies(targetYear, data, low, mid - 1);
     }
 }
 
+// Búsqueda en LinkedList para encontrar e imprimir todas las coincidencias de un año
 template <typename T>
 void searchBinary(const LinkedList<T>& list, int year) {
     Node<T>* current = list.getHead(); 
@@ -49,6 +60,7 @@ void searchBinary(const LinkedList<T>& list, int year) {
     }
 }
 
+// Búsqueda en DoublyLinkedList para encontrar e imprimir todas las coincidencias de un año
 template <typename T>
 void searchBinary(const DoublyLinkedList<T>& list, int year) {
     DoublyNode<T>* current = list.getHead();
@@ -71,6 +83,5 @@ void searchBinary(const DoublyLinkedList<T>& list, int year) {
         current = current->next; 
     }
 }
-
 
 #endif

@@ -6,6 +6,7 @@
 #include "../ATD/LinkedList.hpp"
 #include "../ATD/DoublyLinkedList.hpp"
 #include "../Movie/Movie.hpp"
+#include "QuickSort_ByYear.hpp"
 
 // Función para obtener la puntuación de Rotten Tomatoes como un entero
 int getRottenTomatoesScore(const std::string& rottenTomatoes) {
@@ -33,9 +34,9 @@ unsigned long long partitionByScore(DynamicArray<Movie>& movies, unsigned long l
     return i + 1;
 }
 
-void quickSortByScore(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
+void quickSortByScore(DynamicArray<Movie>& movies, long long low, long long high) {
     if (low < high) {
-        unsigned long long pi = partitionByScore(movies, low, high);
+        long long pi = partitionByScore(movies, low, high);
 
         quickSortByScore(movies, low, pi - 1);
         quickSortByScore(movies, pi + 1, high);
@@ -110,5 +111,7 @@ void quick_sort_movies_by_rotten_tomatoes(DoublyLinkedList<Movie>& movies) {
     DoublyNode<Movie>* high = movies.getTail();
     quickSortByScore(movies, movies.getHead(), high); 
 }
+
+
 
 #endif

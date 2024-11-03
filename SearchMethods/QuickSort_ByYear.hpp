@@ -8,6 +8,7 @@
 #include "../Movie/Movie.hpp"
 #include "../ATD/PriorityQueue.hpp"
 #include "../ATD/SortedList.hpp"
+#include "QuickSort_ByScore.hpp"
 
 //Quick sort by year dynamic array
 unsigned long long partitionByYear(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
@@ -97,6 +98,21 @@ void quick_sort_movies_by_year(DoublyLinkedList<Movie>& movies) {
 
     DoublyNode<Movie>* high = movies.getTail();
     quickSortByYear(movies, movies.getHead(), high); 
+}
+
+void quick_sort_movies_by_score(DynamicArray<Movie>& movies) {
+    quickSortByScore(movies, 0, movies.size() - 1);
+}
+
+void filterAndSortMovies(PriorityQueue& pq, int year) {
+    DynamicArray<Movie> moviesByYear = pq.filterByYear(year);
+    quick_sort_movies_by_score(moviesByYear);
+
+    // Imprimir o manipular `moviesByYear` según sea necesario
+    for (size_t i = 0; i < moviesByYear.size(); i++) {
+        std::cout << moviesByYear[i].getTitle() << " - " 
+                  << moviesByYear[i].getRottenTomatoes() << std::endl;
+    }
 }
 
 #endif

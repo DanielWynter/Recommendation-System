@@ -6,7 +6,7 @@
 
 // Búsqueda binaria modificada para encontrar e imprimir todas las coincidencias de un año
 template<typename DynamicArray>
-void binarySearchAllMovies(int targetYear, const DynamicArray& data,
+void binarySearchAndSave(int targetYear, const DynamicArray& data,
     unsigned long long low, unsigned long long high) 
 {
     if (low > high) {
@@ -35,10 +35,10 @@ void binarySearchAllMovies(int targetYear, const DynamicArray& data,
         }
     } 
     else if (data[mid].getYear() < targetYear) {
-        binarySearchAllMovies(targetYear, data, mid + 1, high);
+        binarySearchAndSave(targetYear, data, mid + 1, high);
     } 
     else {
-        binarySearchAllMovies(targetYear, data, low, mid - 1);
+        binarySearchAndSave(targetYear, data, low, mid - 1);
     }
 }
 
@@ -81,6 +81,45 @@ void searchBinary(const DoublyLinkedList<T>& list, int year) {
             }
         }
         current = current->next; 
+    }
+}
+
+template<typename DynamicArray>
+void binarySearchAndSave(int targetYear, const DynamicArray& data,
+    unsigned long long low, unsigned long long high, DynamicArray& results) 
+{
+    if (low > high) {
+        if (results.size() == 0) {
+            std::cout << "No movies found for year " << targetYear << "." << std::endl;
+        }
+        return;
+    }
+
+    unsigned long long mid = low + (high - low) / 2;
+
+    if (data[mid].getYear() == targetYear) {
+        // Almacenar la película encontrada
+        results.push_back(data[mid]);
+
+        // Búsqueda hacia la izquierda para encontrar otras coincidencias
+        long long left = mid - 1;
+        while (left >= 0 && data[left].getYear() == targetYear) {
+            results.push_back(data[left]);
+            left--;
+        }
+
+        // Búsqueda hacia la derecha para encontrar otras coincidencias
+        long long right = mid + 1;
+        while (right < data.size() && data[right].getYear() == targetYear) {
+            results.push_back(data[right]);
+            right++;
+        }
+    } 
+    else if (data[mid].getYear() < targetYear) {
+        binarySearchAndSave(targetYear, data, mid + 1, high, results);
+    } 
+    else {
+        binarySearchAndSave(targetYear, data, low, mid - 1, results);
     }
 }
 

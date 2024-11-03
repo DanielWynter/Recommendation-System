@@ -14,20 +14,34 @@
 #include "../../ATD/PriorityQueue.hpp"
 #include "../../ATD/SortedList.hpp"
 
-
-
 int main() {
 
-    //Relevance
+    // Relevance
     std::cout << "\n=== Relevance analysis ===\n";
 
-    //Show movies by relevance in a DynamicArray
-    quick_sort_movies_by_rotten_tomatoes(movies1);
-    std::cout << "\nMovies sorted by relevance (Dynamic Array): " << std::endl;
-    for (unsigned long long i = 0; i < movies1.size(); i++) {
-        const Movie& movie = movies1[i];
-        std::cout << "Title: " << movie.getTitle() << ", Year: " << movie.getYear()  << ", Rotten Tomatoes score: " << movie.getRottenTomatoes() << std::endl;
+    // Ordenar películas por año
+    quick_sort_movies_by_year(movies1);
+
+    // Crear un DynamicArray para almacenar los resultados de búsqueda
+    DynamicArray<Movie> results;
+
+    // Realizar la búsqueda y almacenar los resultados
+    int targetYear = 2010; // Puedes cambiar esto a cualquier año que desees buscar
+    binarySearchAndSave(targetYear, movies1, 0, movies1.size() - 1, results);
+    quick_sort_movies_by_rotten_tomatoes(results);
+
+    // Mostrar películas encontradas
+    if (results.size() > 0) {
+        std::cout << "\nMovies found for year " << targetYear << "Sorted by score:\n";
+        for (unsigned long long i = 0; i < results.size(); i++) {
+            const Movie& movie = results[i];
+            std::cout << "Title: " << movie.getTitle() << ", Year: " << movie.getYear() << ", Rotten Tomatoes score: " << movie.getRottenTomatoes() << std::endl;
+        }
+    } else {
+        std::cout << "No movies found for year " << targetYear << "." << std::endl;
     }
+
+
 
     return 0;
 }

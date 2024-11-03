@@ -2,6 +2,7 @@
 #define PRIORITYQUEUE_HPP
 
 #include "../Movie/Movie.hpp"
+#include "DynamicArray.hpp"
 #include <iostream>
 
 class PriorityQueue {
@@ -19,19 +20,26 @@ public:
     PriorityQueue() : head(nullptr) {}
 
 int calculateRelevanceScore(const Movie& movie) {
+    // Inicializa el score a 0
     int score = 0;
 
     // Obtener y limpiar la calificación de Rotten Tomatoes
     std::string rottenScore = movie.getRottenTomatoes();
     rottenScore.erase(remove(rottenScore.begin(), rottenScore.end(), ' '), rottenScore.end());
 
+    // Encontrar la posición del carácter '/'
     size_t pos = rottenScore.find('/');
     if (pos != std::string::npos) {
-        rottenScore = rottenScore.substr(0, pos); // Obtener solo la parte antes de '/'
+        // Extraer el valor antes de '/'
+        std::string scoreStr = rottenScore.substr(0, pos);
+        try {
+            // Convertir a entero
+            score = std::stoi(scoreStr);
+        } catch (const std::invalid_argument& e) {
+            std::cerr << "Error al convertir el puntaje: " << e.what() << std::endl;
+            score = 0; // Asignar un score por defecto en caso de error
+        }
     }
-
-    // Imprimir el score calculado para depuración
-    std::cout << "Relevance Score para " << movie.getTitle() << ": " << score << std::endl;
 
     return score; // Retornar el score final
 }
@@ -66,6 +74,19 @@ int calculateRelevanceScore(const Movie& movie) {
     bool isEmpty() const {
         return head == nullptr;
     }
+
+    DynamicArray<Movie> filterByYear(int year) {
+    DynamicArray<Movie> filteredMovies;
+    PQNode* current = head;
+
+    while (current) {
+        if (current->data.getYear() == year) {
+            filteredMovies.push_back(current->data);
+        }
+        current = current->next;
+    }
+    return filteredMovies;
+}
 
     PQNode* getHead() { return head; }
     PQNode* getNextNode(PQNode* node) { return node ? node->next : nullptr; } 

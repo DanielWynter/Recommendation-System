@@ -14,21 +14,27 @@
 
 int main() {
 
-    //Relevance
-    std::cout << "\n=== Relevance analysis ===\n";
-
-    PriorityQueue priorityQueue;
-    
+    // Filtra las películas por año
+    DynamicArray<Movie> moviesOfYear;
     for (unsigned int i = 0; i < movies1.size(); ++i) {
-        priorityQueue.insert(movies1[i]);
+        if (movies1[i].getYear() == 2015) {
+            moviesOfYear.push_back(movies1[i]);
+        }
     }
 
-    //Show movies by relevance in a PriorityQueue
-    std::cout << "\nMovies sorted by relevance (Priority Queue): " << std::endl;
+    // Inserta las películas filtradas en la PriorityQueue
+    PriorityQueue priorityQueue;
+    for (unsigned int i = 0; i < moviesOfYear.size(); ++i) {
+        priorityQueue.insert(moviesOfYear[i]);
+    }
+
+    // Muestra las películas filtradas por calificación en orden descendente
+    std::cout << "\nMovies from the year " << 2015 << " sorted by Rotten Tomatoes score: " << std::endl;
     while (!priorityQueue.isEmpty()) {
         Movie topMovie = priorityQueue.extractMax();
         std::cout << "Title: " << topMovie.getTitle()
-        << ", Year: " << topMovie.getYear() << ", RottenTomatoes score: " << topMovie.getRottenTomatoes() << "" << std::endl;
+                  << ", RottenTomatoes score: " << topMovie.getRottenTomatoes() << std::endl;
     }
+
     return 0;
 }

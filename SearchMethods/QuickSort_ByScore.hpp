@@ -112,6 +112,24 @@ void quick_sort_movies_by_rotten_tomatoes(DoublyLinkedList<Movie>& movies) {
     quickSortByScore(movies, movies.getHead(), high); 
 }
 
+// Quick sort by Rotten Tomatoes score (Queue)
+void quick_sort_movies_by_rotten_tomatoes(Queue<Movie>& queue) {
+    if (queue.empty()) return;
 
+    // Extraer los elementos de la Queue y almacenarlos en DynamicArray
+    DynamicArray<Movie> movies;
+    while (!queue.empty()) {
+        movies.push_back(queue.front());
+        queue.pop();
+    }
+
+    // Ordenar el DynamicArray usando QuickSort por calificación
+    quickSortByScore(movies, 0, movies.size() - 1);
+
+    // Volver a insertar los elementos ordenados en la Queue
+    for (size_t i = 0; i < movies.size(); i++) {
+        queue.push(movies[i]);
+    }
+}
 
 #endif

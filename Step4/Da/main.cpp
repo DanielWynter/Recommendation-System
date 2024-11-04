@@ -12,7 +12,6 @@
 #include "../../SearchMethods/QuickSort_ByYear.hpp"
 #include "../../SearchMethods/QuickSort_ByScore.hpp"
 #include "../../ATD/PriorityQueue.hpp"
-#include "../../ATD/SortedList.hpp"
 
 int main() {
 
@@ -40,8 +39,6 @@ int main() {
     } else {
         std::cout << "No movies found for year " << targetYear << "." << std::endl;
     }
-
-
-
+    
     return 0;
 }

@@ -7,7 +7,7 @@
 #include "../ATD/DoublyLinkedList.hpp"
 #include "../Movie/Movie.hpp"
 #include "../ATD/PriorityQueue.hpp"
-#include "../ATD/SortedList.hpp"
+#include "../ATD/Queue.hpp"
 #include "QuickSort_ByScore.hpp"
 
 //Quick sort by year dynamic array
@@ -114,5 +114,27 @@ void filterAndSortMovies(PriorityQueue& pq, int year) {
                   << moviesByYear[i].getRottenTomatoes() << std::endl;
     }
 }
+
+void quick_sort_movies_by_year(Queue<Movie>& queue) {
+    if (queue.empty()) return; // Comprobar si la cola está vacía
+
+    // Extraer los elementos de la Queue y almacenarlos en DynamicArray
+    DynamicArray<Movie> movies;
+
+    // Aquí se asume que hay un método `size()` en la Queue y un método `pop()` que elimina el primer elemento
+    while (!queue.empty()) {
+        movies.push_back(queue.front()); // Obtener el primer elemento
+        queue.pop(); // Eliminar el primer elemento de la Queue
+    }
+
+    // Ordenar el DynamicArray usando QuickSort por año
+    quickSortByYear(movies, 0, movies.size() - 1); // Aquí se asume que has implementado quickSortByYear para DynamicArray
+
+    // Volver a insertar los elementos ordenados en la Queue
+    for (size_t i = 0; i < movies.size(); i++) {
+        queue.push(movies[i]); // Agregar cada película de nuevo a la Queue
+    }
+}
+
 
 #endif

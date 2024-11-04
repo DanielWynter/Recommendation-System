@@ -74,7 +74,7 @@ int main() {
     DynamicArray<Movie> results;
 
     int targetYear;
-    std::cout << "\nWhich year would you like to start searching for the best movies? (This will show you the top movies from the next 15 years)\n";
+    std::cout << "\nWhich year would you like to start searching for the best movies? (This will show you the top movies from the following 15 years)\n";
     std::cin >> targetYear;
     for (int i = 0; i < 15; i++) {
         results.clear();

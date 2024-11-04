@@ -4,10 +4,12 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
-#include "../ATD/DynamicArray.hpp"
-#include "../ATD/LinkedList.hpp"
-#include "../ATD/DoublyLinkedList.hpp"
+#include "../ADT/DynamicArray.hpp"
+#include "../ADT/LinkedList.hpp"
+#include "../ADT/DoublyLinkedList.hpp"
 #include "Movie.hpp"
+
+//Function to change strings to int's
 
 int stringToInt(const std::string& str) {
     try {
@@ -16,6 +18,8 @@ int stringToInt(const std::string& str) {
         return 0; 
     }
 }
+
+//Load movies in a dynamic array
 
 DynamicArray<Movie> loadMovies1(const std::string &filename) {
     DynamicArray<Movie> movies1;
@@ -64,6 +68,8 @@ DynamicArray<Movie> loadMovies1(const std::string &filename) {
     return movies1;
 }
 
+//Load movies in a single linked list
+
 LinkedList<Movie> loadMovies2(const std::string &filename) {
     LinkedList<Movie> movies2;
     std::ifstream file(filename);
@@ -111,6 +117,8 @@ LinkedList<Movie> loadMovies2(const std::string &filename) {
     return movies2;
 }
 
+//Load movies in a doubly linked list
+
 DoublyLinkedList<Movie> loadMovies3(const std::string &filename) {
     DoublyLinkedList<Movie> movies3;
     std::ifstream file(filename);
@@ -157,6 +165,8 @@ DoublyLinkedList<Movie> loadMovies3(const std::string &filename) {
     }
     return movies3;
 }
+
+//Define path of the data base and load them in each ADT
 
 std::string filename = "MoviesOnStreamingPlatforms.csv";
 DynamicArray<Movie> movies1 = loadMovies1(filename);

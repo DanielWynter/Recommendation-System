@@ -2,28 +2,27 @@
 #define QUICKSORT_BYSCORE_HPP
 
 #include <iostream>
-#include "../ATD/DynamicArray.hpp"
-#include "../ATD/LinkedList.hpp"
-#include "../ATD/DoublyLinkedList.hpp"
+#include "../ADT/DynamicArray.hpp"
+#include "../ADT/LinkedList.hpp"
+#include "../ADT/DoublyLinkedList.hpp"
 #include "../Movie/Movie.hpp"
 #include "QuickSort_ByYear.hpp"
 
-// Función para obtener la puntuación de Rotten Tomatoes como un entero
+//This function is to get the score as an int because in the data base it's a string that looks something like this: 75/100
 int getRottenTomatoesScore(const std::string& rottenTomatoes) {
     size_t pos = rottenTomatoes.find('/');
     if (pos != std::string::npos) {
-        return std::stoi(rottenTomatoes.substr(0, pos)); // Obtener solo la parte antes de '/'
+        return std::stoi(rottenTomatoes.substr(0, pos));
     }
-    return 0; // Retornar 0 si no es un formato válido
+    return 0;
 }
 
-// Quick sort by Rotten Tomatoes score (Dynamic Array)
+//Quick sort by rotten tomatoes score in a dynamic array
 unsigned long long partitionByScore(DynamicArray<Movie>& movies, unsigned long long low, unsigned long long high) {
     int pivot = getRottenTomatoesScore(movies[high].getRottenTomatoes());
     unsigned long long i = low - 1;
 
     for (unsigned long long j = low; j < high; j++) {
-        // Comparar primero por puntaje y luego por año o título
         if (getRottenTomatoesScore(movies[j].getRottenTomatoes()) > pivot || 
            (getRottenTomatoesScore(movies[j].getRottenTomatoes()) == pivot && movies[j].getYear() < movies[high].getYear())) {
             i++;
@@ -47,13 +46,12 @@ void quick_sort_movies_by_rotten_tomatoes(DynamicArray<Movie>& movies) {
     quickSortByScore(movies, 0, movies.size() - 1);
 }
 
-// Quick sort by Rotten Tomatoes score (Linked List)
+//Single linked list
 Node<Movie>* partitionByScore(LinkedList<Movie>& movies, Node<Movie>* low, Node<Movie>* high) {
     int pivot = getRottenTomatoesScore(high->data.getRottenTomatoes());
     Node<Movie>* i = low;
 
     for (Node<Movie>* j = low; j != high->next; j = j->next) {
-        // Cambiar el operador <= a > para ordenar de mayor a menor
         if (getRottenTomatoesScore(j->data.getRottenTomatoes()) > pivot) {
             std::swap(i->data, j->data);
             i = (i == high) ? i : i->next;
@@ -81,13 +79,12 @@ void quick_sort_movies_by_rotten_tomatoes(LinkedList<Movie>& movies) {
     quickSortByScore(movies, movies.getHead(), high);
 }
 
-// Quick sort by Rotten Tomatoes score (Doubly Linked List)
+//Doubly linked list
 DoublyNode<Movie>* partitionByScore(DoublyLinkedList<Movie>& movies, DoublyNode<Movie>* low, DoublyNode<Movie>* high) {
     int pivot = getRottenTomatoesScore(high->data.getRottenTomatoes());
     DoublyNode<Movie>* i = low;
 
     for (DoublyNode<Movie>* j = low; j != high; j = j->next) {
-        // Cambiar el operador <= a > para ordenar de mayor a menor
         if (getRottenTomatoesScore(j->data.getRottenTomatoes()) > pivot) {
             std::swap(i->data, j->data);
             i = i->next;
@@ -112,21 +109,18 @@ void quick_sort_movies_by_rotten_tomatoes(DoublyLinkedList<Movie>& movies) {
     quickSortByScore(movies, movies.getHead(), high); 
 }
 
-// Quick sort by Rotten Tomatoes score (Queue)
+//Queue
 void quick_sort_movies_by_rotten_tomatoes(Queue<Movie>& queue) {
     if (queue.empty()) return;
 
-    // Extraer los elementos de la Queue y almacenarlos en DynamicArray
     DynamicArray<Movie> movies;
     while (!queue.empty()) {
         movies.push_back(queue.front());
         queue.pop();
     }
 
-    // Ordenar el DynamicArray usando QuickSort por calificación
     quickSortByScore(movies, 0, movies.size() - 1);
 
-    // Volver a insertar los elementos ordenados en la Queue
     for (size_t i = 0; i < movies.size(); i++) {
         queue.push(movies[i]);
     }

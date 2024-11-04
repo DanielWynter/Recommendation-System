@@ -3,9 +3,9 @@
 
 #include <iostream>
 #include "../SearchMethods/BinarySearch.hpp"
-#include "../ATD/DynamicArray.hpp"
-#include "../ATD/LinkedList.hpp"
-#include "../ATD/DoublyLinkedList.hpp"
+#include "../ADT/DynamicArray.hpp"
+#include "../ADT/LinkedList.hpp"
+#include "../ADT/DoublyLinkedList.hpp"
 
 template <typename Container>
 void searchSequentially(const Container& container, int year) {

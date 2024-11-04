@@ -2,9 +2,9 @@
 #define BINARYSEARCH_HPP
 
 #include "../Movie/Movie.hpp"
-#include "../ATD/DynamicArray.hpp"
+#include "../ADT/DynamicArray.hpp"
 
-// Búsqueda binaria modificada para encontrar e imprimir todas las coincidencias de un año
+//Binary search in a dynamic array to be able to save the results in a new dynamic array
 template<typename DynamicArray>
 void binarySearchAndSave(int targetYear, const DynamicArray& data,
     unsigned long long low, unsigned long long high) 
@@ -17,17 +17,14 @@ void binarySearchAndSave(int targetYear, const DynamicArray& data,
     unsigned long long mid = low + (high - low) / 2;
 
     if (data[mid].getYear() == targetYear) {
-        // Imprimir la película encontrada
         std::cout << "Found: " << data[mid].getTitle() << " (" << data[mid].getYear() << ")" << std::endl;
 
-        // Búsqueda hacia la izquierda para encontrar otras coincidencias
         long long left = mid - 1;
         while (left >= 0 && data[left].getYear() == targetYear) {
             std::cout << "Found: " << data[left].getTitle() << " (" << data[left].getYear() << ")" << std::endl;
             left--;
         }
 
-        // Búsqueda hacia la derecha para encontrar otras coincidencias
         long long right = mid + 1;
         while (right < data.size() && data[right].getYear() == targetYear) {
             std::cout << "Found: " << data[right].getTitle() << " (" << data[right].getYear() << ")" << std::endl;
@@ -42,7 +39,7 @@ void binarySearchAndSave(int targetYear, const DynamicArray& data,
     }
 }
 
-// Búsqueda en LinkedList para encontrar e imprimir todas las coincidencias de un año
+//Linked list
 template <typename T>
 void searchBinary(const LinkedList<T>& list, int year) {
     Node<T>* current = list.getHead(); 
@@ -60,7 +57,7 @@ void searchBinary(const LinkedList<T>& list, int year) {
     }
 }
 
-// Búsqueda en DoublyLinkedList para encontrar e imprimir todas las coincidencias de un año
+//Doubly linked list
 template <typename T>
 void searchBinary(const DoublyLinkedList<T>& list, int year) {
     DoublyNode<T>* current = list.getHead();
@@ -98,17 +95,14 @@ void binarySearchAndSave(int targetYear, const DynamicArray& data,
     unsigned long long mid = low + (high - low) / 2;
 
     if (data[mid].getYear() == targetYear) {
-        // Almacenar la película encontrada
         results.push_back(data[mid]);
 
-        // Búsqueda hacia la izquierda para encontrar otras coincidencias
         long long left = mid - 1;
         while (left >= 0 && data[left].getYear() == targetYear) {
             results.push_back(data[left]);
             left--;
         }
 
-        // Búsqueda hacia la derecha para encontrar otras coincidencias
         long long right = mid + 1;
         while (right < data.size() && data[right].getYear() == targetYear) {
             results.push_back(data[right]);

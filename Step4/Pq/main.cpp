@@ -2,19 +2,19 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "../../ATD/DynamicArray.hpp"
-#include "../../ATD/LinkedList.hpp"
-#include "../../ATD/DoublyLinkedList.hpp"
+#include "../../ADT/DynamicArray.hpp"
+#include "../../ADT/LinkedList.hpp"
+#include "../../ADT/DoublyLinkedList.hpp"
 #include "../../Movie/Movie.hpp"
 #include "../../Movie/MovieLoader.hpp"
 #include "../../SearchMethods/BinarySearch.hpp"
 #include "../../SearchMethods/SequentialSearch.hpp"
 #include "../../SearchMethods/QuickSort_ByYear.hpp"
-#include "../../ATD/PriorityQueue.hpp"
+#include "../../ADT/PriorityQueue.hpp"
 
 int main() {
 
-    // Filtra las películas por año
+    //Sort movies by year
     DynamicArray<Movie> moviesOfYear;
     for (unsigned int i = 0; i < movies1.size(); ++i) {
         if (movies1[i].getYear() == 2015) {
@@ -22,13 +22,13 @@ int main() {
         }
     }
 
-    // Inserta las películas filtradas en la PriorityQueue
+    //2nd ADT being used: Priority Queue
     PriorityQueue priorityQueue;
     for (unsigned int i = 0; i < moviesOfYear.size(); ++i) {
         priorityQueue.insert(moviesOfYear[i]);
     }
 
-    // Muestra las películas filtradas por calificación en orden descendente
+    //Show 2015 movies sorted by score to be sure that it does as it should
     std::cout << "\nMovies from the year " << 2015 << " sorted by Rotten Tomatoes score: " << std::endl;
     while (!priorityQueue.isEmpty()) {
         Movie topMovie = priorityQueue.extractMax();

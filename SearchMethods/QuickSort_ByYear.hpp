@@ -2,12 +2,12 @@
 #define QUICKSORT_BYYEAR_HPP
 
 #include <iostream>
-#include "../ATD/DynamicArray.hpp"
-#include "../ATD/LinkedList.hpp"
-#include "../ATD/DoublyLinkedList.hpp"
+#include "../ADT/DynamicArray.hpp"
+#include "../ADT/LinkedList.hpp"
+#include "../ADT/DoublyLinkedList.hpp"
 #include "../Movie/Movie.hpp"
-#include "../ATD/PriorityQueue.hpp"
-#include "../ATD/Queue.hpp"
+#include "../ADT/PriorityQueue.hpp"
+#include "../ADT/Queue.hpp"
 #include "QuickSort_ByScore.hpp"
 
 //Quick sort by year dynamic array
@@ -104,35 +104,32 @@ void quick_sort_movies_by_score(DynamicArray<Movie>& movies) {
     quickSortByScore(movies, 0, movies.size() - 1);
 }
 
+//Priority queue
 void filterAndSortMovies(PriorityQueue& pq, int year) {
     DynamicArray<Movie> moviesByYear = pq.filterByYear(year);
     quick_sort_movies_by_score(moviesByYear);
 
-    // Imprimir o manipular `moviesByYear` según sea necesario
     for (size_t i = 0; i < moviesByYear.size(); i++) {
         std::cout << moviesByYear[i].getTitle() << " - " 
                   << moviesByYear[i].getRottenTomatoes() << std::endl;
     }
 }
 
+//Queue
 void quick_sort_movies_by_year(Queue<Movie>& queue) {
-    if (queue.empty()) return; // Comprobar si la cola está vacía
+    if (queue.empty()) return;
 
-    // Extraer los elementos de la Queue y almacenarlos en DynamicArray
-    DynamicArray<Movie> movies;
+    DynamicArray<Movie> moviesQ;
 
-    // Aquí se asume que hay un método `size()` en la Queue y un método `pop()` que elimina el primer elemento
     while (!queue.empty()) {
-        movies.push_back(queue.front()); // Obtener el primer elemento
-        queue.pop(); // Eliminar el primer elemento de la Queue
+        moviesQ.push_back(queue.front());
+        queue.pop();
     }
 
-    // Ordenar el DynamicArray usando QuickSort por año
-    quickSortByYear(movies, 0, movies.size() - 1); // Aquí se asume que has implementado quickSortByYear para DynamicArray
+    quickSortByYear(moviesQ, 0, moviesQ.size() - 1); 
 
-    // Volver a insertar los elementos ordenados en la Queue
-    for (size_t i = 0; i < movies.size(); i++) {
-        queue.push(movies[i]); // Agregar cada película de nuevo a la Queue
+    for (size_t i = 0; i < moviesQ.size(); i++) {
+        queue.push(moviesQ[i]);
     }
 }
 

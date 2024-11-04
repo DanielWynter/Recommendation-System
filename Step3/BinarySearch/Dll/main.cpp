@@ -2,9 +2,9 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "../../../ATD/DynamicArray.hpp"
-#include "../../../ATD/LinkedList.hpp"
-#include "../../../ATD/DoublyLinkedList.hpp"
+#include "../../../ADT/DynamicArray.hpp"
+#include "../../../ADT/LinkedList.hpp"
+#include "../../../ADT/DoublyLinkedList.hpp"
 #include "../../../Movie/Movie.hpp"
 #include "../../../Movie/MovieLoader.hpp"
 #include "../../../SearchMethods/BinarySearch.hpp"
@@ -12,7 +12,8 @@
 #include "../../../SearchMethods/QuickSort_ByYear.hpp"
 
 int main(){
-//Sort movies by year with quick sort
+
+//Sort movies by year with quick sort in a doubly linked list
 quick_sort_movies_by_year(movies3);
 
 //Binary search

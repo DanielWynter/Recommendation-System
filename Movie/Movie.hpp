@@ -42,6 +42,16 @@ public:
     bool isPrimeVideo() const { return primeVideo; }
     bool isDisneyPlus() const { return disneyPlus; }
     int getType() const { return type; }
+
+    bool isAvailableOnService(int service) const {
+        switch(service) {
+            case 1: return netflix;
+            case 2: return primeVideo;
+            case 3: return disneyPlus;
+            case 4: return hulu;
+            default: return false;
+        }
+    }
 };
 
 #endif

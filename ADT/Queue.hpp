@@ -15,7 +15,7 @@ private:
     Node* back_;
 public:
     Queue() : front_(nullptr), back_(nullptr) {}
-    ~Queue() { /* Implementar destructor para liberar memoria */ }
+    ~Queue() {}
 
     bool empty() const { return front_ == nullptr; }
     void push(const T& value) {
@@ -23,19 +23,19 @@ public:
         if (back_) {
             back_->next = newNode;
         } else {
-            front_ = newNode; // Si la cola estaba vacía, el nuevo nodo es el front
+            front_ = newNode; 
         }
-        back_ = newNode; // El nuevo nodo es el nuevo back
+        back_ = newNode;
     }
 
     void pop() {
-        if (empty()) return; // Manejar error si es necesario
+        if (empty()) return;
         Node* temp = front_;
         front_ = front_->next;
         if (front_ == nullptr) {
-            back_ = nullptr; // Si la cola queda vacía, resetear back
+            back_ = nullptr; 
         }
-        delete temp; // Liberar memoria
+        delete temp;
     }
 
     T& front() {
@@ -43,7 +43,6 @@ public:
         return front_->data;
     }
 
-    // Método para imprimir la cola (opcional)
     void print() const {
         Node* current = front_;
         while (current) {
